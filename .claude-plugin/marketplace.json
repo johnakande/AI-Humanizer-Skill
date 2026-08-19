@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "copy-humanizer",
+  "owner": {
+    "name": "johnakande",
+    "url": "https://github.com/johnakande"
+  },
+  "description": "Install Copy & Humanizer as a Claude plugin.",
+  "plugins": [
+    {
+      "name": "copy-humanizer",
+      "source": "./",
+      "description": "Rewrite text in a specific house style: plain language, active voice, no AI-tell vocabulary, no em dashes, no generic headings.",
+      "license": "MIT",
+      "keywords": ["writing", "editing", "copywriting", "gtm", "marketing", "style", "agent-skills", "house-style"]
+    }
+  ]
+}

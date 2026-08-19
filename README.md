@@ -1,6 +1,5 @@
 # AI Humanizer Skill
 
-[![skills.sh installs](https://skills.sh/b/johnakande/ai-humanizer-skill)](https://skills.sh/johnakande/ai-humanizer-skill)
 ![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 AI Humanizer Skill rewrites text to a specific house style: plain language, active voice, no AI-tell vocabulary, no em dashes, no generic headings, no visible drafting process. Because it is just Markdown, it works with any agent that supports skills.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check Copy & Humanizer's package files without external dependencies."""
+"""Check AI Humanizer Skill's package files without external dependencies."""
 
 from __future__ import annotations
 
@@ -84,4 +84,4 @@ if readme_numbers != set(range(1, PATTERN_COUNT + 1)):
 if len(SKILL.splitlines()) > 500:
     raise SystemExit("Keep SKILL.md at 500 lines or fewer")
 
-print(f"Copy & Humanizer package v{skill_version} is valid")
+print(f"AI Humanizer Skill package v{skill_version} is valid")

@@ -13,7 +13,7 @@ This skill is intentionally separate from [humanizer](https://github.com/blader/
 - `SKILL.md` — the skill itself. YAML frontmatter (`name`, `description`, `license`, `metadata.version`) followed by the rule set: sentence rules, word rules, structure rules, tone rules, 13 numbered patterns with before/after examples, a "what not to flag" guardrail section, and voice calibration. **This is the source of truth.**
 - `README.md` — for humans: installation, usage, the output contract, the pattern tables, a full worked example, and a version history.
 - `.claude-plugin/plugin.json` — Claude Code plugin manifest. Points `skills` at `./` (the repo root, where `SKILL.md` lives).
-- `.claude-plugin/marketplace.json` — makes the repo installable via `/plugin marketplace add johnakande/copy-humanizer`.
+- `.claude-plugin/marketplace.json` — makes the repo installable via `/plugin marketplace add johnakande/ai-humanizer-skill`.
 - `scripts/validate-package.py` — checks that `SKILL.md`, `README.md`, and `plugin.json` haven't drifted apart. No external dependencies.
 - `.github/workflows/validate.yml` — runs the validator, a skill-discovery check, and a Claude plugin check on every push and pull request.
 
@@ -24,7 +24,7 @@ This skill is intentionally separate from [humanizer](https://github.com/blader/
 - **Patterns:** the skill currently defines **13 numbered patterns** under "Patterns to catch," headed `### 1.` through `### 13.`. If you add, remove, or renumber any, update the README pattern tables, the "N patterns" references, and `scripts/validate-package.py`'s expected range in the same change.
 - **Banned words:** the word list in the "Word rules" section is a single flat list, not numbered. If you add or remove entries, keep the list alphabetized-by-convenience (grouped loosely by theme is fine) and don't duplicate an entry that's already covered by a different phrasing.
 - **Version:** version lives in `SKILL.md`'s `metadata.version` frontmatter field, `.claude-plugin/plugin.json`'s `version` field, and README's first "Version History" entry. Bump all three together. Do not add a top-level `version:` field to `SKILL.md` (it belongs under `metadata:`), and do not add `compatibility:` or `allowed-tools:` fields. The validator rejects both.
-- **Output contract:** the "deliver final text only, no draft, no summary" rule is the defining difference from humanizer's default (which shows a draft/audit/final loop on request). Don't soften this without the user's explicit sign-off, since it was a deliberate, repeated instruction, not a default this repo drifted into.
+- **Output contract:** for pasted text, "deliver final text only, no draft, no summary" is the defining difference from humanizer's default (which shows a draft/audit/final loop on request). File mode is the one exception, where a short after-the-fact summary is expected because the rewrite itself isn't visible inline. Don't soften the pasted-text default without the user's explicit sign-off, since it was a deliberate, repeated instruction, not a default this repo drifted into.
 - **Non-obvious fixes:** if you change the prompt to handle a tricky failure mode (a rule that kept getting missed, an edge case in the cut list), add a short note to the README version history explaining what was fixed and why.
 
 ## Checks

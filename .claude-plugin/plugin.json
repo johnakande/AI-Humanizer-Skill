@@ -1,14 +1,14 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
-  "name": "copy-humanizer",
+  "name": "ai-humanizer-skill",
   "description": "Rewrite text in a specific house style: plain language, active voice, no AI-tell vocabulary, no em dashes, no generic headings.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": {
     "name": "johnakande",
     "url": "https://github.com/johnakande"
   },
-  "homepage": "https://github.com/johnakande/copy-humanizer",
-  "repository": "https://github.com/johnakande/copy-humanizer",
+  "homepage": "https://github.com/johnakande/ai-humanizer-skill",
+  "repository": "https://github.com/johnakande/ai-humanizer-skill",
   "license": "MIT",
   "keywords": ["writing", "editing", "copywriting", "gtm", "marketing", "style", "agent-skills", "house-style"],
   "skills": ["./"]

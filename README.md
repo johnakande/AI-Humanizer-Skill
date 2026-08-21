@@ -4,8 +4,6 @@
 
 AI Humanizer Skill rewrites text to a specific house style: plain language, active voice, no AI-tell vocabulary, no em dashes, no generic headings, no visible drafting process. Because it is just Markdown, it works with any agent that supports skills.
 
-This is a separate skill from [humanizer](https://github.com/blader/humanizer), and intentionally so. Humanizer removes AI writing patterns while staying neutral about tone: it adapts to whatever voice the source calls for. AI Humanizer Skill applies one specific, opinionated house style on top of that idea: a fixed banned-word list, a hard no-em-dash rule, no generic section headings, and a strict "final text only" output contract for pasted text. Use humanizer when you want general AI-pattern cleanup that preserves the original voice. Use this skill when the output needs to match one house style consistently, especially blog posts, GTM copy, marketing content, and social posts.
-
 ## How it works
 
 The rule set is original house style, built around 13 named patterns adapted in part from Wikipedia's ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), maintained by WikiProject AI Cleanup, and reframed for GTM and marketing copy rather than encyclopedia prose.

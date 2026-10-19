@@ -1,101 +1,16 @@
 # AI Humanizer Skill
 
+A free skill that finds and fixes AI writing tells in your copy. Plain language, active voice, no em dashes, no invented facts.
+
 ![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-AI Humanizer Skill rewrites text to a specific house style: plain language, active voice, no AI-tell vocabulary, no em dashes, no generic headings, no visible drafting process. Because it is just Markdown, it works with any agent that supports skills.
+Built for GTM and marketing copy. It's plain Markdown, so it works with Claude Code, OpenCode, Claude Desktop, and any agent that reads skills.
 
-## How it works
+## Before and after
 
-The rule set is original house style, built around 13 named patterns adapted in part from Wikipedia's ["Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), maintained by WikiProject AI Cleanup, and reframed for GTM and marketing copy rather than encyclopedia prose.
+The example below is fictional. It shows what the skill does to a typical AI product announcement.
 
-> "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
-
-It does not make things up. A name, number, date, quote, or other factual detail must come from the source text or the writer, never invented to make a rewrite read more smoothly. If a sentence needs a missing detail, the skill asks for it or rewrites around it instead of guessing.
-
-Unlike humanizer, this skill does not show its work by default. It writes a draft, checks that draft silently against every rule below, and hands back only the finished text: no visible draft, no list of what still sounded artificial, no offer to continue. Ask explicitly if you want to see the reasoning or the draft stage. Point it at a file and it rewrites only the prose in place, leaving code, data, frontmatter, and link targets untouched.
-
-## Usage
-
-Call the skill directly:
-
-```
-/ai-humanizer-skill
-
-[paste your text here]
-```
-
-Or ask in plain language:
-
-```
-Rewrite this in my house style: [your text]
-```
-
-To rewrite a file, give it the path:
-
-```
-Rewrite the copy in docs/launch-post.md in my house style
-```
-
-### Match your voice
-
-If you want the rewrite to sound more like a specific writer, include a sample of their past work:
-
-```
-/ai-humanizer-skill
-
-Here's a writing sample for voice matching:
-[paste 2-3 paragraphs]
-
-Now rewrite this:
-[paste text to rewrite]
-```
-
-The skill reads the sample for sentence length, word choice, and paragraph rhythm, then applies that voice within the house style rather than defaulting to a generic "direct and opinionated" tone.
-
-## Rule categories
-
-| Category | Covers |
-|---|---|
-| Sentence rules | Active voice, no em dashes, no semicolons, varied sentence length, no "not just X, but Y" |
-| Word rules | A fixed cut list (can, may, just, delve, unlock, tapestry, and similar), when to repeat a word instead of forcing a synonym, hyphenation in predicate position |
-| Structure rules | No generic headings ("Key Takeaways," "Why It Matters"), no forced rule of three, no symmetrical bullet lists, varied paragraph openers |
-| Tone rules | Take a position when the facts support one, cut hedging and filler transitions, don't over-explain the obvious |
-
-## The 13 patterns
-
-### Content and proof patterns
-
-| # | Pattern | Before | After |
-|---|---------|--------|-------|
-| 1 | **Significance inflation** | "marked a pivotal moment in the company's evolution, underscoring its commitment to growth" | "The company moved to a bigger office because the old one couldn't fit the new hires." |
-| 2 | **Promotional language** | "Our cutting-edge platform delivers a seamless, powerful experience" | "The platform syncs data across tools in under a second." |
-| 3 | **Notability name-dropping** | "Featured in TechCrunch, Forbes, and Business Insider, with an active presence everywhere" | "TechCrunch called our launch 'the fastest-growing dev tool of 2026.'" |
-| 4 | **Copula avoidance** | "Our onboarding flow serves as the foundation... and boasts a 40% faster completion rate" | "Onboarding is the foundation of the customer journey. It's 40% faster than before." |
-| 9 | **Generic conclusion** | "The future looks bright as the company continues its journey toward excellence" | "The company plans to open two more offices next year." |
-
-### Structure patterns
-
-| # | Pattern | Before | After |
-|---|---------|--------|-------|
-| 5 | **Forced rule of three** | "The update improves speed, reliability, and user satisfaction" | "The update cut load time by 40%." |
-| 6 | **Negative parallelism** | "This isn't just a pricing change, it's a complete rethink of the product" | "The pricing change reflects a rethink of the whole product." |
-| 8 | **False range** | "The platform handles everything from onboarding to enterprise security" | "The platform handles onboarding, permissions, and audit logs." |
-| 13 | **Fragmented header** | "## Performance\n\nSpeed matters.\n\nUsers who hit a slow page tend to leave." | "## Performance\n\nUsers who hit a slow page tend to leave." |
-
-### Voice and rhythm patterns
-
-| # | Pattern | Before | After |
-|---|---------|--------|-------|
-| 7 | **Elegant variation** | "The founder built the tool. The entrepreneur later sold the company. The businesswoman now advises startups." | "The founder built the tool, sold the company, and now advises startups." |
-| 10 | **Manufactured punchlines** | "Then the update shipped. No warning. No changelog. No rollback plan." | "The update shipped with no warning, no changelog, and no rollback plan, which is why the on-call engineer found out from a customer complaint." |
-| 11 | **Aphorism formula** | "Speed is the currency of modern software." | "Users leave a page that takes more than three seconds to load." |
-| 12 | **Fake-candid opener** | "Is it worth the price? Honestly? It depends." | "Whether it's worth the price depends on how often you'll use it." |
-
-Full rule text, the "what not to flag" guardrails, and the complete banned-word list live in [SKILL.md](SKILL.md).
-
-## Full example
-
-**Before (AI-sounding):**
+**Before:**
 > We're thrilled to announce a pivotal moment in our platform's evolution: the launch of Workflow Automations. This groundbreaking feature isn't just an update, it's a complete reimagining of how teams get work done.
 >
 > Our cutting-edge automation engine boasts a seamless, powerful integration with your existing tools, delivering a diverse array of triggers, actions, and conditions. Whether you're managing onboarding, approvals, or reporting, Workflow Automations empowers your team to eliminate friction, unlock efficiency, and drive results.
@@ -117,38 +32,112 @@ Full rule text, the "what not to flag" guardrails, and the complete banned-word 
 >
 > It's live on every paid plan today. Setup takes about ten minutes.
 
-## Sources
-
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) informed patterns 1, 2, 3, 4, 6, 7, 8, and 9.
-- [WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) maintains that page.
-- The word rules, structure rules, tone rules, and patterns 10, 11, 12, and 13 are original house style, not sourced from Wikipedia.
-
-## Version history
-
-<details>
-<summary>Show release notes</summary>
-
-- **1.2.0** - Renamed the skill and repository to AI Humanizer Skill (was Copy & Humanizer). Added file mode and embedded mode to the output contract, and an explicit rule against inventing facts, names, numbers, or dates. No change to the 13 patterns.
-- **1.1.0** - Added patterns #3 (notability name-dropping) and #4 (copula avoidance), found by cross-checking the rule set against Wikipedia's "Signs of AI writing." Numbered all patterns with `### N.` headers. Added the Claude plugin manifests, a package validator, and a CI workflow that runs on every push and pull request. 13 patterns total.
-- **1.0.0** - Initial release. House style rules, 11 named failure patterns with before/after examples, silent draft-and-check process, voice calibration.
-
-</details>
-
-## License
-
-MIT
-
-## Installation
-
-Install AI Humanizer Skill with the Skills CLI:
+## Quick start
 
 ```bash
 npx skills add johnakande/ai-humanizer-skill --global
 ```
 
-Leave off `--global` to install it only in the current project. Add `--agent <name>` or `--agent '*'` to choose which agents receive it, then reload their skills.
+Then, in your agent:
 
-Claude Code 2.1.142 or newer can install the plugin instead:
+```
+/ai-humanizer-skill
+
+[paste your text here]
+```
+
+Or ask in plain language: "Rewrite this in my house style: [your text]"
+
+## What it does
+
+- Rewrites your text to a fixed house style, built around 13 named AI writing patterns.
+- Drafts, checks the draft silently against every rule, and hands back only the finished text. No visible draft, no list of fixes, no offer to continue. Ask if you want to see the reasoning.
+- Never invents facts. A name, number, date, or quote must come from your source text or from you. If a sentence needs a missing detail, the skill asks for it or rewrites around it.
+- Rewrites files in place. Point it at a path and it changes only the prose, leaving code, data, frontmatter, and link targets alone.
+- Matches a writer's voice when you give it a sample.
+
+## Usage
+
+**Rewrite pasted text**
+
+```
+/ai-humanizer-skill
+
+[paste your text here]
+```
+
+**Rewrite a file**
+
+```
+Rewrite the copy in docs/launch-post.md in my house style
+```
+
+**Match your voice**
+
+```
+/ai-humanizer-skill
+
+Here's a writing sample for voice matching:
+[paste 2-3 paragraphs]
+
+Now rewrite this:
+[paste text to rewrite]
+```
+
+The skill reads the sample for sentence length, word choice, and paragraph rhythm. It applies that voice inside the house style instead of defaulting to a generic "direct and opinionated" tone.
+
+## The rules
+
+| Category | Covers |
+|---|---|
+| Sentence rules | Active voice, no em dashes, no semicolons, varied sentence length, no "not just X, but Y" |
+| Word rules | A fixed cut list (can, may, just, delve, unlock, tapestry, and similar), when to repeat a word instead of forcing a synonym, hyphenation in predicate position |
+| Structure rules | No generic headings ("Key Takeaways," "Why It Matters"), no forced rule of three, no symmetrical bullet lists, varied paragraph openers |
+| Tone rules | Take a position when the facts support one, cut hedging and filler transitions, don't over-explain the obvious |
+
+## The 13 patterns
+
+Pattern numbers match [SKILL.md](SKILL.md), which holds the full rule text, the "what not to flag" guardrails, and the complete banned word list.
+
+### Content and proof
+
+| # | Pattern | Before | After |
+|---|---------|--------|-------|
+| 1 | **Significance inflation** | "marked a pivotal moment in the company's evolution, underscoring its commitment to growth" | "The company moved to a bigger office because the old one couldn't fit the new hires." |
+| 2 | **Promotional language** | "Our cutting-edge platform delivers a seamless, powerful experience" | "The platform syncs data across tools in under a second." |
+| 3 | **Notability name-dropping** | "Featured in TechCrunch, Forbes, and Business Insider, with an active presence everywhere" | "TechCrunch called our launch 'the fastest-growing dev tool of 2026.'" |
+| 4 | **Copula avoidance** | "Our onboarding flow serves as the foundation... and boasts a 40% faster completion rate" | "Onboarding is the foundation of the customer journey. It's 40% faster than before." |
+| 9 | **Generic conclusion** | "The future looks bright as the company continues its journey toward excellence" | "The company plans to open two more offices next year." |
+
+### Structure
+
+| # | Pattern | Before | After |
+|---|---------|--------|-------|
+| 5 | **Forced rule of three** | "The update improves speed, reliability, and user satisfaction" | "The update cut load time by 40%." |
+| 6 | **Negative parallelism** | "This isn't just a pricing change, it's a complete rethink of the product" | "The pricing change reflects a rethink of the whole product." |
+| 8 | **False range** | "The platform handles everything from onboarding to enterprise security" | "The platform handles onboarding, permissions, and audit logs." |
+| 13 | **Fragmented header** | "## Performance\n\nSpeed matters.\n\nUsers who hit a slow page tend to leave." | "## Performance\n\nUsers who hit a slow page tend to leave." |
+
+### Voice and rhythm
+
+| # | Pattern | Before | After |
+|---|---------|--------|-------|
+| 7 | **Elegant variation** | "The founder built the tool. The entrepreneur later sold the company. The businesswoman now advises startups." | "The founder built the tool, sold the company, and now advises startups." |
+| 10 | **Manufactured punchlines** | "Then the update shipped. No warning. No changelog. No rollback plan." | "The update shipped with no warning, no changelog, and no rollback plan, which is why the on-call engineer found out from a customer complaint." |
+| 11 | **Aphorism formula** | "Speed is the currency of modern software." | "Users leave a page that takes more than three seconds to load." |
+| 12 | **Fake-candid opener** | "Is it worth the price? Honestly? It depends." | "Whether it's worth the price depends on how often you'll use it." |
+
+## Install
+
+**Skills CLI (any supported agent)**
+
+```bash
+npx skills add johnakande/ai-humanizer-skill --global
+```
+
+Drop `--global` to install for the current project only. Add `--agent <name>` or `--agent '*'` to choose which agents receive it, then reload their skills.
+
+**Claude Code plugin** (2.1.142 or newer)
 
 ```
 /plugin marketplace add johnakande/ai-humanizer-skill
@@ -157,31 +146,63 @@ Claude Code 2.1.142 or newer can install the plugin instead:
 
 The plugin command is `/ai-humanizer-skill:ai-humanizer-skill`.
 
-In Claude Desktop, download this repository as a ZIP and upload it as a skill.
+**Claude Desktop**
 
-### Manual install (Claude Code)
+Download this repository as a ZIP and upload it as a skill.
 
-Clone directly into Claude Code's skills directory:
+**Manual, Claude Code**
 
 ```bash
 mkdir -p ~/.claude/skills
 git clone https://github.com/johnakande/ai-humanizer-skill.git ~/.claude/skills/ai-humanizer-skill
 ```
 
-Or copy the skill file manually if you already have this repo cloned:
+Or, if you already cloned the repo:
 
 ```bash
 mkdir -p ~/.claude/skills/ai-humanizer-skill
 cp SKILL.md ~/.claude/skills/ai-humanizer-skill/
 ```
 
-### Manual install (OpenCode)
+**Manual, OpenCode**
 
 ```bash
 mkdir -p ~/.config/opencode/skills
 git clone https://github.com/johnakande/ai-humanizer-skill.git ~/.config/opencode/skills/ai-humanizer-skill
 ```
 
-> **Note:** OpenCode also scans `~/.claude/skills/`, so if you use both tools, a single clone into `~/.claude/skills/ai-humanizer-skill/` is enough.
+OpenCode also scans `~/.claude/skills/`. If you use both tools, one clone into `~/.claude/skills/ai-humanizer-skill/` is enough.
 
-For a manual install into any other agent, copy `SKILL.md` into that agent's skill folder.
+**Any other agent:** copy `SKILL.md` into that agent's skill folder.
+
+## Sources
+
+The rule set is original house style, adapted in part from Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), maintained by [WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup). I reframed it for GTM and marketing copy instead of encyclopedia prose.
+
+- Patterns 1, 2, 3, 4, 6, 7, 8, and 9 draw on the Wikipedia page.
+- The word rules, structure rules, tone rules, and patterns 10, 11, 12, and 13 are original house style.
+
+## Version history
+
+<details>
+<summary>Show release notes</summary>
+
+- **1.2.0:** Renamed the skill and repository to AI Humanizer Skill (was Copy & Humanizer). Added file mode and embedded mode to the output contract, and an explicit rule against inventing facts, names, numbers, or dates. No change to the 13 patterns.
+- **1.1.0:** Added patterns 3 (notability name-dropping) and 4 (copula avoidance), found by cross-checking the rule set against Wikipedia's "Signs of AI writing." Numbered all patterns with `### N.` headers. Added the Claude plugin manifests, a package validator, and a CI workflow that runs on every push and pull request. 13 patterns total.
+- **1.0.0:** Initial release. House style rules, 11 named failure patterns with before and after examples, silent draft and check process, voice calibration.
+
+</details>
+
+## Built by
+
+John Akande, SEO and GTM engineer at Zozzah Technologies.
+
+- Skill page: [johnakande.com/resources/ai-humanizer-skill](https://johnakande.com/resources/ai-humanizer-skill)
+- Site: [johnakande.com](https://johnakande.com)
+- YouTube: [@thejohnakande](https://www.youtube.com/@thejohnakande/)
+
+Found a bug or a pattern I missed? Open an issue.
+
+## License
+
+MIT
